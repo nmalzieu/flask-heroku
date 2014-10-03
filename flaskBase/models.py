@@ -46,4 +46,4 @@ class SampleModel(BaseModel, db.Model):
     id = db.Column(db.BigInteger, primary_key=True)
 
     def __unicode__(self):
-        return u'<SampleModel %s>' % self.fullname
+        return u'<SampleModel %s>' % self.id
