@@ -1,4 +1,3 @@
-from sqlalchemy.sql import func
 from datetime import datetime
 
 from db import db
@@ -16,8 +15,8 @@ def serial_from(obj):
 
 
 class BaseModel(object):
-    created_at = db.Column(db.DateTime, default=func.now())
-    updated_at = db.Column(db.DateTime, onupdate=func.now())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     __public__ = None
 
