@@ -5,7 +5,22 @@ from flaskBase import app
 from flaskBase.db import db
 from flaskBase.decorators import login_required
 
-API = restful.Api(app)
+
+class flaskBaseAPI(restful.Api):
+
+    def handle_error(self, error):
+        db.session.rollback()
+        return super(flaskBaseAPI, self).handle_error(error)
+
+
+API = flaskBaseAPI(app)
+
+
+def date_handler(obj):
+    return obj.isoformat() if hasattr(obj, 'isoformat') else obj
+
+
+restful.representations.json.settings['default'] = date_handler
 
 
 class SampleRessource(restful.Resource):
