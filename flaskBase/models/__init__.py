@@ -64,7 +64,7 @@ class BaseModel(object):
                 if isinstance(value, datetime):
                     value = value.isoformat()
                 if isinstance(value, list):
-                    value = [elem.to_serializable_dict(add_class_fields=add_class_fields) for elem in value]
+                    value = [elem.to_serializable_dict(add_class_fields=add_class_fields) if hasattr(elem, 'to_serializable_dict') else elem for elem in value]
                 dictionary[public_key] = value
         return dictionary
 

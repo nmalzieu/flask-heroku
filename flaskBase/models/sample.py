@@ -4,7 +4,11 @@ from flaskBase.models import BaseModel
 
 class SampleModel(BaseModel, db.Model):
     __tablename__ = 'sample_model'
-    __public__ = ['created_at', 'updated_at', 'id']
+    __public__ = [
+        'created_at_utc',
+        'updated_at_utc',
+        'id'
+    ]
 
     id = db.Column(db.BigInteger, primary_key=True)
 

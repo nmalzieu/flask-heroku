@@ -15,14 +15,6 @@ class flaskBaseAPI(restful.Api):
 
 API = flaskBaseAPI(app)
 
-
-def date_handler(obj):
-    return obj.isoformat() if hasattr(obj, 'isoformat') else obj
-
-
-restful.representations.json.settings['default'] = date_handler
-
-
 class SampleRessource(restful.Resource):
 
     @login_required
