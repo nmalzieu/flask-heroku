@@ -15,6 +15,7 @@ class flaskBaseAPI(restful.Api):
 
 API = flaskBaseAPI(app)
 
+
 class SampleRessource(restful.Resource):
 
     @login_required
