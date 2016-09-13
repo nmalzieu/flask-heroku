@@ -1,8 +1,8 @@
 from functools import wraps
 
 import flask
+import flask_restful
 from flask import request
-from flask.ext import restful
 
 import models
 
@@ -21,5 +21,5 @@ def login_required(fun):
                 flask.request.user = user
                 return fun(*args, **kwargs)
 
-        return restful.abort(403)
+        return flask_restful.abort(403)
     return decorated_function
