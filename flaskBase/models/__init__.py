@@ -48,6 +48,8 @@ class BaseModel(object):
                     'class': class_name,
                     'attribute': attribute_name
                 })
+                if class_name == self.__class__.__name__:
+                    add_fields.append(attribute_name)
 
         for public_key in self.__public__ + add_fields:
             value = getattr(self, public_key)
@@ -64,7 +66,7 @@ class BaseModel(object):
                 if isinstance(value, datetime):
                     value = value.isoformat()
                 if isinstance(value, list):
-                    value = [elem.to_serializable_dict(add_class_fields=add_class_fields) if hasattr(elem, 'to_serializable_dict') else elem for elem in value]
+                    value = [elem.to_serializable_dict(add_class_fields=add_class_fields, add_fields=[]) if hasattr(elem, 'to_serializable_dict') else elem for elem in value]
                 dictionary[public_key] = value
         return dictionary
 
